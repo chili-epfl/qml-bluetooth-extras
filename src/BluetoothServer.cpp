@@ -30,7 +30,7 @@ BluetoothServer::BluetoothServer(QQuickItem* parent):
     QQuickItem(parent),
     server(QBluetoothServiceInfo::RfcommProtocol, this)
 {
-    uuid = "{00001101-0000-1000-8000-00805F9B34FB}";
+    uuid = "{00000000-0000-0000-0000-000000000000}";
     name = "";
     connect(&server, SIGNAL(newConnection()), this, SLOT(publishConnections()));
 }
