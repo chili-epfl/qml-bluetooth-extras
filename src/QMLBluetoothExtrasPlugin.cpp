@@ -25,7 +25,9 @@
 #include "QMLBluetoothExtrasPlugin.h"
 
 #include "BluetoothServer.h"
+#include "BluetoothSocketExtended.h"
 
 void QMLBluetoothExtrasPlugin::registerTypes(const char* uri){
     qmlRegisterType<BluetoothServer>(uri, 1, 0, "BluetoothServer");
+    qmlRegisterType<BluetoothSocketExtended>(uri, 1, 0, "BluetoothSocketExtented");
 }

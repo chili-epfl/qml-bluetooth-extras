@@ -28,6 +28,8 @@
 #include <QQuickItem>
 #include <QBluetoothServer>
 
+#include "BluetoothSocketExtended.h"
+
 class BluetoothServer : public QQuickItem {
     /* *INDENT-OFF* */
     Q_OBJECT
@@ -113,9 +115,9 @@ signals:
     /**
      * @brief Emitted when a new socket is connected
      *
-     * @param socket TODO
+     * @param socket Newly connected socket
      */
-    void newConnection();
+    void newConnection(BluetoothSocketExtended* socket);
 
 private slots:
 

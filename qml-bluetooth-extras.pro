@@ -17,11 +17,13 @@ uri = QMLBluetoothExtras
 
 HEADERS += \
     src/QMLBluetoothExtrasPlugin.h \
-    src/BluetoothServer.h
+    src/BluetoothServer.h \
+    src/BluetoothSocketExtended.h
 
 SOURCES += \
     src/QMLBluetoothExtrasPlugin.cpp \
-    src/BluetoothServer.cpp
+    src/BluetoothServer.cpp \
+    src/BluetoothSocketExtended.cpp
 
 OTHER_FILES += qmldir
 

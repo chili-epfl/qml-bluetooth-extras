@@ -51,8 +51,6 @@ void BluetoothServer::setListening(bool enable){
         service = server.listen(QBluetoothUuid(uuid), name);
         if(!service.isValid())
             qWarning() << "BluetoothServer::setListening(): Couldn't start listening: " << server.error();
-        else
-            qDebug() << service.serviceUuid() << " " << service.serviceName();
     }
     else{
         service.unregisterService();
@@ -66,7 +64,7 @@ void BluetoothServer::setListening(bool enable){
 void BluetoothServer::setUuid(QString uuid){
     if(uuid != this->uuid){
         if(QBluetoothUuid(uuid) == QBluetoothUuid(QString("{00000000-0000-0000-0000-000000000000}")))
-            qDebug() << "BluetoothServer::setUuid(QString): Invalid uuid. ";
+            qWarning() << "BluetoothServer::setUuid(QString): Invalid uuid. ";
         else{
             bool wasListening = isListening();
             setListening(false);
@@ -90,8 +88,6 @@ void BluetoothServer::setName(QString name){
 }
 
 void BluetoothServer::publishConnections(){
-    while(server.hasPendingConnections()){
-        QBluetoothSocket* sock = server.nextPendingConnection();
-        emit newConnection();
-    }
+    while(server.hasPendingConnections())
+        emit newConnection(new BluetoothSocketExtended(server.nextPendingConnection(), this));
 }
