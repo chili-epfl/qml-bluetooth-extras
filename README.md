@@ -50,10 +50,10 @@ QML wrapper for QBluetoothSocket with critical functionality missing in Qt's off
 >  - **connected()** :                      Emitted when the socket connects
 >  - **disconnected()** :                   Emitted when the socket disconnects
 >  - **error(enum socketError)** :          Emitted when an error occurs
->  - **bytesReceived(list<int> bytes)** :   Emitted when new bytes arrive, all elements will be within [0x00, 0xFF]
+>  - **bytesReceived(list&lt;int&gt; bytes)** :   Emitted when new bytes arrive, all elements will be within [0x00, 0xFF]
 
 **Slots:**
 
 >  - **void connectToService()**:           Connects to the given peer address on the given service
 >  - **void disconnectFromService()**:      Disconnects from the service
->  - **bool writeBytes(list<int> bytes)**:  Writes the bytes to the socket, each element must be within [0x00, 0xFF], returns whether all bytes were successfully written
+>  - **bool writeBytes(list&lt;int&gt; bytes)**:  Writes the bytes to the socket, each element must be within [0x00, 0xFF], returns whether all bytes were successfully written
