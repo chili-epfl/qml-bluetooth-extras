@@ -31,7 +31,7 @@ BluetoothServer::BluetoothServer(QQuickItem* parent):
     server(QBluetoothServiceInfo::RfcommProtocol, this)
 {
     uuid = "{00000000-0000-0000-0000-000000000000}";
-    name = "";
+    name = "UNNAMED";
     connect(&server, SIGNAL(newConnection()), this, SLOT(publishConnections()));
 }
 
@@ -77,7 +77,9 @@ void BluetoothServer::setUuid(QString uuid){
 }
 
 void BluetoothServer::setName(QString name){
-    if(name != this->name){
+    if(name == "")
+        qWarning() << "BluetoothServer::setName(QString): name cannot be empty, not setting.";
+    else if(name != this->name){
         bool wasListening = isListening();
         setListening(false);
         this->name = name;
