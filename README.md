@@ -42,7 +42,7 @@ QML wrapper for QBluetoothLocalDevice.
 >  - **address** :  `string` - Local adapter MAC address, can be set by the user to an existing local adapter address on Linux
 >  - **hostMode** : `readonly HostMode` -  Host mode (i.e powered off, discoverable etc.)
 >  - **name** :     `readonly string` -  Local adapter name
->  - **connectedDevices** : `readonly list<string>` - List of connected devices, but see https://bugreports.qt.io/browse/QTBUG-57417
+>  - **connectedDevices** : `readonly list<string>` - List of connected devices' MAC addresses, but see https://bugreports.qt.io/browse/QTBUG-57417
 
 **Slots:**
 
