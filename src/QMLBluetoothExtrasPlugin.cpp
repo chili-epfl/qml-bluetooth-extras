@@ -24,10 +24,19 @@
 
 #include "QMLBluetoothExtrasPlugin.h"
 
+#include "BluetoothLocalDevice.h"
+#include "BluetoothLocalDeviceStatic.h"
 #include "BluetoothServer.h"
 #include "BluetoothSocketExtended.h"
 
 void QMLBluetoothExtrasPlugin::registerTypes(const char* uri){
+    qmlRegisterType<BluetoothLocalDevice>(uri, 1, 0, "BluetoothLocalDevice");
+    qmlRegisterSingletonType<BluetoothLocalDeviceStatic>(uri, 1, 0, "BluetoothLocalDeviceStatic",
+                                                [] (QQmlEngine* qmlEngine, QJSEngine* jsEngine)->QObject* {
+                                                    Q_UNUSED(qmlEngine)
+                                                    Q_UNUSED(jsEngine)
+                                                    return new BluetoothLocalDeviceStatic();
+                                                });
     qmlRegisterType<BluetoothServer>(uri, 1, 0, "BluetoothServer");
     qmlRegisterType<BluetoothSocketExtended>(uri, 1, 0, "BluetoothSocketExtented");
 }

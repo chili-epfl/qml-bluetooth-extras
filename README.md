@@ -21,6 +21,34 @@ This will install the QML plugin inside the Qt sysroot. **Be aware that this is 
 QML API
 -------
 
+### `BluetoothLocalDeviceStatic [Singleton]`
+
+QML wrapper for static QBluetoothLocalDevice methods and enums.
+
+**Enums:**
+
+>  - **HostMode** : Same as http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum
+
+**Slots:**
+
+>  - **list&lt;string&gt; allDevices()**: Gets list of all local adapter MAC addresses
+
+### `BluetoothLocalDevice`
+
+QML wrapper for QBluetoothLocalDevice.
+
+**Properties:**
+
+>  - **address** :  `string` - Local adapter MAC address, can be set by the user to an existing local adapter address on Linux
+>  - **hostMode** : `readonly HostMode` -  Host mode (i.e powered off, discoverable etc.)
+>  - **name** :     `readonly string` -  Local adapter name
+>  - **connectedDevices** : `readonly list<string>` - List of connected devices, but see https://bugreports.qt.io/browse/QTBUG-57417
+
+**Slots:**
+
+>  - **bool isValid()**: Gets whether the local adapter is valid
+>  - **void powerOn()**: Powers the adapter on if possible
+
 ### `BluetoothServer`
 
 QML wrapper for QBluetoothServer; listens for incoming connections. When a new connection is made, emits a
