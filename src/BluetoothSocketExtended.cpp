@@ -29,7 +29,7 @@ BluetoothSocketExtended::BluetoothSocketExtended(QQuickItem* parent):
 {
     socket = new QBluetoothSocket(QBluetoothServiceInfo::RfcommProtocol, this);
     peerAddress = "00:00:00:00:00:00";
-    uuid = "{00000000-0000-0000-0000-000000000000}";
+    channel = 1;
     connectSocketSignalSlots();
 }
 
@@ -38,7 +38,7 @@ BluetoothSocketExtended::BluetoothSocketExtended(QBluetoothSocket* externalSocke
 {
     socket = externalSocket;
     peerAddress = socket->peerAddress().toString();
-    uuid = "UNAVAILABLE";
+    channel = socket->peerPort();
     connectSocketSignalSlots();
 }
 
@@ -65,21 +65,28 @@ void BluetoothSocketExtended::setPeerAddress(QString peerAddress){
     }
 }
 
-void BluetoothSocketExtended::setUuid(QString uuid){
-    if(uuid != this->uuid){
+void BluetoothSocketExtended::setChannel(int channel){
+    if(channel < 1){
+        qWarning() << "BluetoothSocketExtended::setChannel(): Given channel too small, setting to 1.";
+        channel = 1;
+    }
+    else if(channel > 60){
+        qWarning() << "BluetoothSocketExtended::setChannel(): Given channel too large, setting to 60.";
+        channel = 60;
+    }
+
+    if(channel != this->channel){
         if(socket->state() != QBluetoothSocket::UnconnectedState)
-            qWarning() << "BluetoothSocketExtended::setUuid(QString): Can only set uuid while disconnected.";
-        else if(QBluetoothUuid(uuid) == QBluetoothUuid(QString("{00000000-0000-0000-0000-000000000000}")))
-            qWarning() << "BluetoothSocketExtended::setUuid(QString): Invalid uuid. ";
+            qWarning() << "BluetoothSocketExtended::setChannel(): Can only set channel while disconnected.";
         else{
-            this->uuid = uuid;
-            emit uuidChanged();
+            this->channel = channel;
+            emit channelChanged();
         }
     }
 }
 
 void BluetoothSocketExtended::connectToService(){
-    socket->connectToService(QBluetoothAddress(peerAddress), QBluetoothUuid(uuid));
+    socket->connectToService(QBluetoothAddress(peerAddress), (quint16)channel);
 }
 
 void BluetoothSocketExtended::disconnectFromService(){

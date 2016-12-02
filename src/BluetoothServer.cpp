@@ -17,7 +17,7 @@
 
 /**
  * @file BluetoothServer.cpp
- * @brief QML wrapper source for QBluetoothServer
+ * @brief QML wrapper source for QBluetoothServer (only RFCOMM)
  * @author Ayberk Özgür
  * @date 2016-11-10
  */
@@ -26,21 +26,26 @@
 
 #include <QBluetoothUuid>
 
-BluetoothServer::BluetoothServer(QQuickItem* parent):
+#include "BluetoothLocalDeviceStatic.h"
+
+BluetoothServer::BluetoothServer(QQuickItem* parent) :
     QQuickItem(parent),
     server(QBluetoothServiceInfo::RfcommProtocol, this)
 {
-    uuid = "{00000000-0000-0000-0000-000000000000}";
-    name = "UNNAMED";
+    QList<QBluetoothHostInfo> adapters = QBluetoothLocalDevice::allDevices();
+    if(adapters.size() <= 0)
+        qWarning() << "BluetoothServer::BluetoothServer(): No local Bluetooth adapters found, BluetoothServer will not function. ";
+    else
+        localAdapterAddress = adapters[0].address().toString();
+    channel = 0;
     connect(&server, SIGNAL(newConnection()), this, SLOT(publishConnections()));
 }
 
 BluetoothServer::~BluetoothServer(){
-    service.unregisterService();
     server.close();
 }
 
-bool BluetoothServer::isListening() const{
+bool BluetoothServer::isListening() const {
     return server.isListening();
 }
 
@@ -48,44 +53,44 @@ void BluetoothServer::setListening(bool enable){
     bool wasListening = server.isListening();
 
     if(enable){
-        service = server.listen(QBluetoothUuid(uuid), name);
-        if(!service.isValid())
+        if(!server.listen(QBluetoothAddress(localAdapterAddress), (quint16)channel))
             qWarning() << "BluetoothServer::setListening(): Couldn't start listening: " << server.error();
     }
-    else{
-        service.unregisterService();
+    else
         server.close();
-    }
 
     if(wasListening != server.isListening())
         emit listeningChanged();
 }
 
-void BluetoothServer::setUuid(QString uuid){
-    if(uuid != this->uuid){
-        if(QBluetoothUuid(uuid) == QBluetoothUuid(QString("{00000000-0000-0000-0000-000000000000}")))
-            qWarning() << "BluetoothServer::setUuid(QString): Invalid uuid. ";
-        else{
-            bool wasListening = isListening();
-            setListening(false);
-            this->uuid = uuid;
-            if(wasListening)
-                setListening(true);
-            emit uuidChanged();
-        }
+void BluetoothServer::setChannel(int channel){
+    if(channel < 0){
+        qWarning() << "BluetoothServer::setChannel(): Given channel too small, setting to 0.";
+        channel = 0;
+    }
+    else if(channel > 60){
+        qWarning() << "BluetoothServer::setChannel(): Given channel too large, setting to 60.";
+        channel = 60;
+    }
+
+    if(channel != this->channel){
+        bool wasListening = isListening();
+        setListening(false);
+        this->channel = channel;
+        if(wasListening)
+            setListening(true);
+        emit channelChanged();
     }
 }
 
-void BluetoothServer::setName(QString name){
-    if(name == "")
-        qWarning() << "BluetoothServer::setName(QString): name cannot be empty, not setting.";
-    else if(name != this->name){
+void BluetoothServer::setLocalAdapterAddress(QString localAdapterAddress){
+    if(localAdapterAddress != this->localAdapterAddress){
         bool wasListening = isListening();
         setListening(false);
-        this->name = name;
+        this->localAdapterAddress = localAdapterAddress;
         if(wasListening)
             setListening(true);
-        emit nameChanged();
+        emit localAdapterAddressChanged();
     }
 }
 

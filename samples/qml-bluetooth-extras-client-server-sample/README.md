@@ -1,5 +1,5 @@
-qml-bluetooth-extras-sample
-===========================
+qml-bluetooth-extras-client-server-sample
+=========================================
 
 Example use of qml-bluetooth-extras in a bidirectional server-client communication scenario. Follow the build
 instructions in [the qml-bluetooth-extras README](../../README.md) before trying to run this sample. It is tested with

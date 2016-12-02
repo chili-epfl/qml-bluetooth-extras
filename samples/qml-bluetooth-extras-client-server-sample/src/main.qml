@@ -27,8 +27,8 @@ ApplicationWindow {
     BluetoothServer{
         id: server
 
-        uuid: "{00001101-0000-1000-8000-00805F9B34FB}" //Serial Port Profile
-        name: "QML-BLUETOOTH-EXTRAS-SAMPLE-SERVER"
+        localAdapterAddress: "5C:F3:70:7C:71:0D"
+        channel: 20
 
         onNewConnection: {
             serverSocket = socket;
@@ -36,7 +36,7 @@ ApplicationWindow {
             serverSocket.connected.connect(function(){console.log("Server socket connected."); });
             serverSocket.disconnected.connect(function(){console.log("Server socket disconnected."); });
             serverSocket.peerAddressChanged.connect(function(){console.log("Server socket peer address changed: " + serverSocket.peerAddress); });
-            serverSocket.uuidChanged.connect(function(){console.log("Server socket uuid changed: " + serverSocket.uuid); });
+            serverSocket.channelChanged.connect(function(){console.log("Server socket channel changed: " + serverSocket.channel); });
         }
     }
 
@@ -46,13 +46,13 @@ ApplicationWindow {
         id: clientSocket
 
         peerAddress: clientAddressField.text
-        uuid: "{00001101-0000-1000-8000-00805F9B34FB}" //Serial Port Profile
+        channel: 20
 
         onBytesReceived: console.log("Client received: " + getStr(bytes))
         onConnected: console.log("Client socket connected")
         onDisconnected: console.log("Client socket disconnected")
         onPeerAddressChanged: console.log("Client socket peer address changed: " + peerAddress)
-        onUuidChanged: console.log("Client socket uuid changed: " + uuid)
+        onChannelChanged: console.log("Client socket channel changed: " + channel)
     }
 
     Row{
@@ -82,7 +82,7 @@ ApplicationWindow {
                 TextField{
                     id: clientAddressField
                     placeholderText: "MAC address to connect to"
-                    text: "XX:XX:XX:XX:XX:XX"
+                    text: "5C:F3:70:7C:71:0D"//"XX:XX:XX:XX:XX:XX"
                 }
 
                 Button{

@@ -35,7 +35,7 @@ class BluetoothSocketExtended : public QQuickItem {
     /* *INDENT-ON* */
 
     Q_PROPERTY(QString peerAddress READ getPeerAddress WRITE setPeerAddress NOTIFY peerAddressChanged)
-    Q_PROPERTY(QString uuid READ getUuid WRITE setUuid NOTIFY uuidChanged)
+    Q_PROPERTY(int channel READ getChannel WRITE setChannel NOTIFY channelChanged)
 
 public:
 
@@ -74,18 +74,18 @@ public:
     void setPeerAddress(QString peerAddress);
 
     /**
-     * @brief Gets the current uuid
+     * @brief Gets the current channel that this socket is supposed to connect to on the peer
      *
-     * @return Current uuid
+     * @return Current channel that this socket is supposed to connect to on the peer
      */
-    QString getUuid() const { return uuid; }
+    int getChannel() const { return channel; }
 
     /**
-     * @brief Sets the uuid to connect to
+     * @brief Sets the current channel that this socket is supposed to connect to on the peer
      *
-     * @param port The new full uuid, e.g "{00001101-0000-1000-8000-00805F9B34FB}"
+     * @param channel Value in [1,60]
      */
-    void setUuid(QString uuid);
+    void setChannel(int channel);
 
 public slots:
 
@@ -115,9 +115,9 @@ signals:
     void peerAddressChanged();
 
     /**
-     * @brief Emitted whe the service uuid changes
+     * @brief Emitted whe the connection channel changes
      */
-    void uuidChanged();
+    void channelChanged();
 
     /**
      * @brief Emitted when the socket is connected
@@ -166,7 +166,7 @@ private:
 
     QBluetoothSocket* socket;   ///< The low level socket
     QString peerAddress;        ///< Peer MAC address
-    QString uuid;               ///< Service uuid to connect to
+    int channel;                ///< Channel to connect to on the peer
 
 };
 

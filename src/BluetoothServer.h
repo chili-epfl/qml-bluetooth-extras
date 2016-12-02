@@ -17,7 +17,7 @@
 
 /**
  * @file BluetoothServer.h
- * @brief QML wrapper header for QBluetoothServer
+ * @brief QML wrapper header for QBluetoothServer (only RFCOMM)
  * @author Ayberk Özgür
  * @date 2016-11-17
  */
@@ -36,8 +36,8 @@ class BluetoothServer : public QQuickItem {
     /* *INDENT-ON* */
 
     Q_PROPERTY(bool listen READ isListening WRITE setListening NOTIFY listeningChanged)
-    Q_PROPERTY(QString uuid READ getUuid WRITE setUuid NOTIFY uuidChanged)
-    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QString localAdapterAddress READ getLocalAdapterAddress WRITE setLocalAdapterAddress NOTIFY localAdapterAddressChanged)
+    Q_PROPERTY(int channel READ getChannel WRITE setChannel NOTIFY channelChanged)
 
 public:
 
@@ -68,32 +68,37 @@ public:
     void setListening(bool enable);
 
     /**
-     * @brief Gets the current service uuid
+     * @brief Gets the local adapter MAC address that this server is supposed to listen on
      *
-     * @return Current uuid, e.g "{00001101-0000-1000-8000-00805F9B34FB}"
+     * @return Local adapter MAC address that this server is supposed to listen on
      */
-    QString getUuid() const { return uuid; }
+    QString getLocalAdapterAddress() const { return localAdapterAddress; }
 
     /**
-     * @brief Sets the service uuid
+     * @brief Sets the local adapter MAC address that this server is supposed to listen on
      *
-     * @param host The new full uuid, e.g "{00001101-0000-1000-8000-00805F9B34FB}"
+     * Local adapter with given address must exist.
+     * Setting this to a different address resets the server if already listening.
+     *
+     * @param localAdapterAddress Local adapter MAC address that this server is supposed to listen on
      */
-    void setUuid(QString uuid);
+    void setLocalAdapterAddress(QString localAdapterAddress);
 
     /**
-     * @brief Gets the current service name
+     * @brief Gets the desired channel or automatically set channel upon listen
      *
-     * @return Current service name
+     * @return The RFCOMM channel
      */
-    QString getName() const { return name; }
+    int getChannel() const { return channel; }
 
     /**
-     * @brief Sets the service name
+     * @brief Channel to listen to, must be already unoccupied; set to 0 to choose automatically
      *
-     * @param host The new service name
+     * Setting this to a different channel resets the server if already listening.
+     *
+     * @param channel 0 to choose automatically or a value in [1,60] chosen manually
      */
-    void setName(QString name);
+    void setChannel(int channel);
 
 signals:
 
@@ -103,14 +108,14 @@ signals:
     void listeningChanged();
 
     /**
-     * @brief Emitted when the service uuid changes
+     * @brief Emitted when the local adapter address changes
      */
-    void uuidChanged();
+    void localAdapterAddressChanged();
 
     /**
-     * @brief Emitted when the service name changes
+     * @brief Emitted when the channel changes
      */
-    void nameChanged();
+    void channelChanged();
 
     /**
      * @brief Emitted when a new socket is connected
@@ -128,10 +133,9 @@ private slots:
 
 private:
 
-    QString uuid;                   ///< Service uuid, e.g "{00001101-0000-1000-8000-00805F9B34FB}"
-    QString name;                   ///< Service name
+    QString localAdapterAddress;    ///< MAC address of the desired local adapter
+    quint16 channel;                ///< Desired RFCOMM channel, or automatically set channel upon listen
     QBluetoothServer server;        ///< The QBluetoothServer object to wrap
-    QBluetoothServiceInfo service;  ///< Service that is opened by listen()
 
 };
 
