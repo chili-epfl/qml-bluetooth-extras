@@ -29,6 +29,11 @@
 #include "BluetoothServer.h"
 #include "BluetoothSocketExtended.h"
 
+/**
+ * @brief QML wrappers for missing Qt Bluetooth objects
+ */
+namespace QMLBluetoothExtras{
+
 void QMLBluetoothExtrasPlugin::registerTypes(const char* uri){
     qmlRegisterType<BluetoothLocalDevice>(uri, 1, 0, "BluetoothLocalDevice");
     qmlRegisterSingletonType<BluetoothLocalDeviceStatic>(uri, 1, 0, "BluetoothLocalDeviceStatic",
@@ -39,4 +44,6 @@ void QMLBluetoothExtrasPlugin::registerTypes(const char* uri){
                                                 });
     qmlRegisterType<BluetoothServer>(uri, 1, 0, "BluetoothServer");
     qmlRegisterType<BluetoothSocketExtended>(uri, 1, 0, "BluetoothSocketExtented");
+}
+
 }

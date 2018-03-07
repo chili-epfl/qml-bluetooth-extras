@@ -30,17 +30,31 @@
 
 #include "BluetoothLocalDeviceStatic.h"
 
+namespace QMLBluetoothExtras {
+
+/**
+ * @brief QML wrapper around QBluetoothLocalDevice
+ */
 class BluetoothLocalDevice : public QQuickItem {
     /* *INDENT-OFF* */
     Q_OBJECT
     /* *INDENT-ON* */
 
+    /** @brief Current read-only host mode as described in http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum */
     Q_PROPERTY(BluetoothLocalDeviceStatic::HostMode hostMode READ getHostMode NOTIFY hostModeChanged)
+
+    /** @brief Read-only local adapter name */
     Q_PROPERTY(QString name READ getName NOTIFY nameChanged)
+
+    /** @brief Desired local adapter address */
     Q_PROPERTY(QString address READ getAddress WRITE setAddress NOTIFY addressChanged)
+
+    /** @brief Read-only list of currently connected remote devices over this adapter */
     Q_PROPERTY(QStringList connectedDevices READ getConnectedDevices NOTIFY connectedDevicesChanged)
 
 public:
+
+    /** @cond DO_NOT_DOCUMENT */
 
     /**
      * @brief Creates a new BluetoothLocalDevice
@@ -89,7 +103,11 @@ public:
      */
     QStringList getConnectedDevices();
 
+    /** @endcond */
+
 signals:
+
+    /** @cond DO_NOT_DOCUMENT */
 
     /**
      * @brief Emitted when the host mode changes
@@ -110,6 +128,8 @@ signals:
      * @brief Emitted when a device connects or disconnects
      */
     void connectedDevicesChanged();
+
+    /** @endcond */
 
 public slots:
 
@@ -140,5 +160,7 @@ private:
     QBluetoothLocalDevice* localDevice;  ///< Local device interface
 
 };
+
+}
 
 #endif // BLUETOOTHLOCALDEVICE_H

@@ -24,6 +24,8 @@
 
 #include "BluetoothLocalDevice.h"
 
+namespace QMLBluetoothExtras{
+
 BluetoothLocalDevice::BluetoothLocalDevice(QQuickItem* parent) : QQuickItem(parent){
     localDevice = new QBluetoothLocalDevice(this);
     connectAll();
@@ -109,4 +111,6 @@ QStringList BluetoothLocalDevice::getConnectedDevices(){
         for(QBluetoothAddress const& deviceAddress : localDevice->connectedDevices())
             devices << deviceAddress.toString();
     return devices;
+}
+
 }

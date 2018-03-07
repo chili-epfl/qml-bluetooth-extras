@@ -7,6 +7,10 @@ the following:
   - Ubuntu 16.04
   - Android 6.0.1 (arm-v7) built with SDK API 23 and NDK r10e on Ubuntu 16.04 host
 
+See [samples/](samples/) for example uses.
+
+See [DOCUMENTATION.md](DOCUMENTATION.md) for the API.
+
 build
 -----
 
@@ -18,6 +22,10 @@ build
 
 This will install the QML plugin inside the Qt sysroot. **Be aware that this is not a sandboxed installation.**
 
-See [samples/](samples/) for example uses.
+build documentation
+-------------------
 
-See [DOCUMENTATION.md](DOCUMENTATION.md) for the API.
+```
+    $ doxygen
+    $ moxygen --output DOCUMENTATION.md xml
+```

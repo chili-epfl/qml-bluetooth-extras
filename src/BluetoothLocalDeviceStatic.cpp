@@ -26,6 +26,8 @@
 
 #include <QBluetoothHostInfo>
 
+namespace QMLBluetoothExtras{
+
 BluetoothLocalDeviceStatic::BluetoothLocalDeviceStatic(QObject* parent) : QObject(parent){}
 
 BluetoothLocalDeviceStatic::~BluetoothLocalDeviceStatic(){}
@@ -35,4 +37,6 @@ QStringList BluetoothLocalDeviceStatic::allDevices(){
     for(QBluetoothHostInfo const& hostInfo : QBluetoothLocalDevice::allDevices())
         devices << hostInfo.address().toString();
     return devices;
+}
+
 }

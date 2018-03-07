@@ -28,6 +28,11 @@
 #include <QObject>
 #include <QBluetoothLocalDevice>
 
+namespace QMLBluetoothExtras {
+
+/**
+ * @brief Singleton object for exposing QBluetoothLocalDevice enums and static methods to QML
+ */
 class BluetoothLocalDeviceStatic : public QObject {
     /* *INDENT-OFF* */
     Q_OBJECT
@@ -35,14 +40,21 @@ class BluetoothLocalDeviceStatic : public QObject {
 
 public:
 
+    /** @cond DO_NOT_DOCUMENT */
+
     BluetoothLocalDeviceStatic(QObject* parent = 0);
     ~BluetoothLocalDeviceStatic();
 
+    /** @endcond */
+
+    /**
+     * @brief Host modes as described in http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum
+     */
     enum HostMode {
-        HostModePoweredOff = QBluetoothLocalDevice::HostPoweredOff,
-        HostModeConnectable = QBluetoothLocalDevice::HostConnectable,
-        HostModeDiscoverable = QBluetoothLocalDevice::HostDiscoverable,
-        HostModeDiscoverableLimitedInquiry = QBluetoothLocalDevice::HostDiscoverableLimitedInquiry
+        HostModePoweredOff = QBluetoothLocalDevice::HostPoweredOff,                                ///< Powered off
+        HostModeConnectable = QBluetoothLocalDevice::HostConnectable,                              ///< Connectable but not discoverable
+        HostModeDiscoverable = QBluetoothLocalDevice::HostDiscoverable,                            ///< Discoverable and connectable
+        HostModeDiscoverableLimitedInquiry = QBluetoothLocalDevice::HostDiscoverableLimitedInquiry ///< ?
     };
     Q_ENUM(HostMode)
 
@@ -57,6 +69,8 @@ public slots:
 
 };
 
-Q_DECLARE_METATYPE(BluetoothLocalDeviceStatic::HostMode)
+}
+
+Q_DECLARE_METATYPE(QMLBluetoothExtras::BluetoothLocalDeviceStatic::HostMode)
 
 #endif // BLUETOOTHLOCALDEVICESTATIC_H

@@ -24,6 +24,8 @@
 
 #include "BluetoothSocketExtended.h"
 
+namespace QMLBluetoothExtras{
+
 BluetoothSocketExtended::BluetoothSocketExtended(QQuickItem* parent):
     QQuickItem(parent)
 {
@@ -122,4 +124,6 @@ bool BluetoothSocketExtended::writeBytes(QList<int> bytes){
     }
 
     return true;
+}
+
 }

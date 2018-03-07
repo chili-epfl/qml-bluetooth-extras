@@ -26,6 +26,8 @@
 
 #include <QBluetoothUuid>
 
+namespace QMLBluetoothExtras{
+
 BluetoothServer::BluetoothServer(QQuickItem* parent):
     QQuickItem(parent),
     server(QBluetoothServiceInfo::RfcommProtocol, this)
@@ -92,4 +94,6 @@ void BluetoothServer::setName(QString name){
 void BluetoothServer::publishConnections(){
     while(server.hasPendingConnections())
         emit newConnection(new BluetoothSocketExtended(server.nextPendingConnection(), this));
+}
+
 }

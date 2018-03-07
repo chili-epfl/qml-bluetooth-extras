@@ -30,16 +30,28 @@
 
 #include "BluetoothSocketExtended.h"
 
+namespace QMLBluetoothExtras {
+
+/**
+ * @brief QML wrapper for QBluetoothServer
+ */
 class BluetoothServer : public QQuickItem {
     /* *INDENT-OFF* */
     Q_OBJECT
     /* *INDENT-ON* */
 
+    /** @brief Whether to listen for incoming connections */
     Q_PROPERTY(bool listen READ isListening WRITE setListening NOTIFY listeningChanged)
+
+    /** @brief The advertised service UUID, e.g {00001101-0000-1000-8000-00805F9B34FB} */
     Q_PROPERTY(QString uuid READ getUuid WRITE setUuid NOTIFY uuidChanged)
+
+    /** @brief The advertised service name, e.g {00001101-0000-1000-8000-00805F9B34FB} */
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
 
 public:
+
+    /** @cond DO_NOT_DOCUMENT */
 
     /**
      * @brief Creates a new BluetoothServer with the given QML parent
@@ -95,7 +107,11 @@ public:
      */
     void setName(QString name);
 
+    /** @endcond */
+
 signals:
+
+    /** @cond DO_NOT_DOCUMENT */
 
     /**
      * @brief Emitted when listening changes
@@ -111,6 +127,8 @@ signals:
      * @brief Emitted when the service name changes
      */
     void nameChanged();
+
+    /** @endcond */
 
     /**
      * @brief Emitted when a new socket is connected
@@ -134,5 +152,7 @@ private:
     QBluetoothServiceInfo service;  ///< Service that is opened by listen()
 
 };
+
+}
 
 #endif /* BLUETOOTHSERVER_H */

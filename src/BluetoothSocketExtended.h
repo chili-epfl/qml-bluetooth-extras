@@ -29,15 +29,25 @@
 #include <QBluetoothSocket>
 #include <QList>
 
+namespace QMLBluetoothExtras {
+
+/**
+ * @brief QML wrapper for QBluetoothSocket
+ */
 class BluetoothSocketExtended : public QQuickItem {
     /* *INDENT-OFF* */
     Q_OBJECT
     /* *INDENT-ON* */
 
+    /** @brief MAC address to connect to, or address of the already open remote connection */
     Q_PROPERTY(QString peerAddress READ getPeerAddress WRITE setPeerAddress NOTIFY peerAddressChanged)
+
+    /** @brief Service UUID to connect to, must be in full form, e.g "{00001101-0000-1000-8000-00805F9B34FB}" for SPP */
     Q_PROPERTY(QString uuid READ getUuid WRITE setUuid NOTIFY uuidChanged)
 
 public:
+
+    /** @cond DO_NOT_DOCUMENT */
 
     /**
      * @brief Creates a new BluetoothSocketExtended with the given QML parent
@@ -87,6 +97,8 @@ public:
      */
     void setUuid(QString uuid);
 
+    /** @endcond */
+
 public slots:
 
     /**
@@ -109,6 +121,8 @@ public slots:
 
 signals:
 
+    /** @cond DO_NOT_DOCUMENT */
+
     /**
      * @brief Emitted when the peer MAC address changes
      */
@@ -118,6 +132,8 @@ signals:
      * @brief Emitted whe the service uuid changes
      */
     void uuidChanged();
+
+    /** @endcond */
 
     /**
      * @brief Emitted when the socket is connected
@@ -155,7 +171,7 @@ private slots:
      *
      * @param socketError The socket error to emit
      */
-     void emitErrorAsInt(QBluetoothSocket::SocketError socketError);
+    void emitErrorAsInt(QBluetoothSocket::SocketError socketError);
 
 private:
 
@@ -170,6 +186,8 @@ private:
 
 };
 
-Q_DECLARE_METATYPE(BluetoothSocketExtended*)
+}
+
+Q_DECLARE_METATYPE(QMLBluetoothExtras::BluetoothSocketExtended*)
 
 #endif /* BLUETOOTHSOCKETEXTENDED_H */

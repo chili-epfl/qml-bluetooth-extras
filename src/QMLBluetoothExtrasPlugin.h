@@ -28,6 +28,10 @@
 #include <QQmlExtensionPlugin>
 #include <qqml.h>
 
+namespace QMLBluetoothExtras{
+
+/** @cond DO_NOT_DOCUMENT */
+
 class QMLBluetoothExtrasPlugin : public QQmlExtensionPlugin {
     /* *INDENT-OFF* */
     Q_OBJECT
@@ -37,5 +41,9 @@ class QMLBluetoothExtrasPlugin : public QQmlExtensionPlugin {
 public:
     void registerTypes(const char* uri);
 };
+
+/** @endcond */
+
+}
 
 #endif /* QMLBLUETOOTHEXTRASPLUGIN_H */
