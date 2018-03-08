@@ -32,11 +32,11 @@ ApplicationWindow {
 
         onNewConnection: {
             serverSocket = socket;
-            serverSocket.bytesReceived.connect(function(bytes){console.log("Server received: " + getStr(bytes)); });
-            serverSocket.connected.connect(function(){console.log("Server socket connected."); });
-            serverSocket.disconnected.connect(function(){console.log("Server socket disconnected."); });
-            serverSocket.peerAddressChanged.connect(function(){console.log("Server socket peer address changed: " + serverSocket.peerAddress); });
-            serverSocket.uuidChanged.connect(function(){console.log("Server socket uuid changed: " + serverSocket.uuid); });
+            serverSocket.bytesReceived.connect(function(bytes){console.info("Server received: " + getStr(bytes)); });
+            serverSocket.connected.connect(function(){console.info("Server socket connected."); });
+            serverSocket.disconnected.connect(function(){console.info("Server socket disconnected."); });
+            serverSocket.peerAddressChanged.connect(function(){console.info("Server socket peer address changed: " + serverSocket.peerAddress); });
+            serverSocket.uuidChanged.connect(function(){console.info("Server socket uuid changed: " + serverSocket.uuid); });
         }
     }
 
@@ -48,11 +48,11 @@ ApplicationWindow {
         peerAddress: clientAddressField.text
         uuid: "{00001101-0000-1000-8000-00805F9B34FB}" //Serial Port Profile
 
-        onBytesReceived: console.log("Client received: " + getStr(bytes))
-        onConnected: console.log("Client socket connected")
-        onDisconnected: console.log("Client socket disconnected")
-        onPeerAddressChanged: console.log("Client socket peer address changed: " + peerAddress)
-        onUuidChanged: console.log("Client socket uuid changed: " + uuid)
+        onBytesReceived: console.info("Client received: " + getStr(bytes))
+        onConnected: console.info("Client socket connected")
+        onDisconnected: console.info("Client socket disconnected")
+        onPeerAddressChanged: console.info("Client socket peer address changed: " + peerAddress)
+        onUuidChanged: console.info("Client socket uuid changed: " + uuid)
     }
 
     Row{
@@ -64,7 +64,7 @@ ApplicationWindow {
                     text: "Listen"
                     onClicked: {
                         server.listen = true;
-                        console.log("Server stared listening.");
+                        console.info("Server stared listening.");
                     }
                 }
 

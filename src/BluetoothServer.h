@@ -135,7 +135,7 @@ signals:
      *
      * @param socket Newly connected socket
      */
-    void newConnection(BluetoothSocketExtended* socket);
+    void newConnection(QMLBluetoothExtras::BluetoothSocketExtended* socket);
 
 private slots:
 

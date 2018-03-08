@@ -41,7 +41,7 @@ class BluetoothLocalDevice : public QQuickItem {
     /* *INDENT-ON* */
 
     /** @brief Current read-only host mode as described in http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum */
-    Q_PROPERTY(BluetoothLocalDeviceStatic::HostMode hostMode READ getHostMode NOTIFY hostModeChanged)
+    Q_PROPERTY(QMLBluetoothExtras::BluetoothLocalDeviceStatic::HostMode hostMode READ getHostMode NOTIFY hostModeChanged)
 
     /** @brief Read-only local adapter name */
     Q_PROPERTY(QString name READ getName NOTIFY nameChanged)
@@ -73,7 +73,7 @@ public:
      *
      * @return Host mode
      */
-    BluetoothLocalDeviceStatic::HostMode getHostMode() const;
+    QMLBluetoothExtras::BluetoothLocalDeviceStatic::HostMode getHostMode() const;
 
     /**
      * @brief Gets the local adapter name

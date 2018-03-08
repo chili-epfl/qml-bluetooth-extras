@@ -26,6 +26,7 @@ ApplicationWindow {
                     id: device
                     address: allDevices[index]
                     onAddressChanged: powerOn()
+                    onHostModeChanged: console.info(" host mode changed for " + address + ": " + hostMode)
                 }
             }
         }
