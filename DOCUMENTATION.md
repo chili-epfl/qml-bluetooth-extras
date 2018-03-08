@@ -13,7 +13,7 @@ QML wrappers for missing Qt Bluetooth objects.
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
 `class `[`QMLBluetoothExtras::BluetoothLocalDevice`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice) | QML wrapper around QBluetoothLocalDevice.
-`class `[`QMLBluetoothExtras::BluetoothLocalDeviceStatic`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic) | Singleton object for exposing QBluetoothLocalDevice enums and static methods to QML.
+`class `[`QMLBluetoothExtras::BluetoothLocalDeviceStatic`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic) | Object for exposing QBluetoothLocalDevice enums and static methods to QML.
 `class `[`QMLBluetoothExtras::BluetoothServer`](#classQMLBluetoothExtras_1_1BluetoothServer) | QML wrapper for QBluetoothServer.
 `class `[`QMLBluetoothExtras::BluetoothSocketExtended`](#classQMLBluetoothExtras_1_1BluetoothSocketExtended) | QML wrapper for QBluetoothSocket.
 
@@ -73,7 +73,9 @@ class QMLBluetoothExtras::BluetoothLocalDeviceStatic
   : public QObject
 ```  
 
-Singleton object for exposing QBluetoothLocalDevice enums and static methods to QML.
+Object for exposing QBluetoothLocalDevice enums and static methods to QML.
+
+This class is **singleton**, you can call `ThisClass.anyFunction()` and use `ThisClass.anyProperty` directly.
 
 ## Summary
 

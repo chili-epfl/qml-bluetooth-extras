@@ -31,7 +31,8 @@
 namespace QMLBluetoothExtras {
 
 /**
- * @brief Singleton object for exposing QBluetoothLocalDevice enums and static methods to QML
+ * @brief Object for exposing QBluetoothLocalDevice enums and static methods to QML
+ * @singleton
  */
 class BluetoothLocalDeviceStatic : public QObject {
     /* *INDENT-OFF* */
