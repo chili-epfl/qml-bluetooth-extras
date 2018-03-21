@@ -37,7 +37,8 @@ class LowEnergyCentral : public QQuickItem {
     Q_OBJECT
     /* *INDENT-ON* */
 
-
+    Q_PROPERTY(QString localAddr MEMBER localAddr)
+    Q_PROPERTY(QString remoteAddr MEMBER remoteAddr)
 
 public:
 
@@ -59,7 +60,9 @@ public:
 
 signals:
 
+    void connected();
 
+    void discoveryFinished();
 
     /** @cond DO_NOT_DOCUMENT */
 
@@ -69,7 +72,15 @@ signals:
 
 public slots:
 
+    int state();
+
+    int error();
+
     void connectToDevice();
+
+    void discoverServices();
+
+    QStringList services();
 
 private slots:
 
@@ -78,6 +89,9 @@ private slots:
 private:
 
     QLowEnergyController* controller; ///< Underlying controller
+
+    QString localAddr;
+    QString remoteAddr;
 
 };
 

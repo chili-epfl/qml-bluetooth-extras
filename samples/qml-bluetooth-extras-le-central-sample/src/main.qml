@@ -19,12 +19,33 @@ ApplicationWindow {
             text: "connect"
             onClicked: lecentral.connectToDevice()
         }
+
+        Button{
+            text: "get state"
+            onClicked: console.info("state: " + lecentral.state())
+        }
+
+        Button{
+            text: "get error"
+            onClicked: console.info("error: " + lecentral.error())
+        }
+
+        Button{
+            text: "discover services"
+            onClicked: lecentral.discoverServices()
+        }
+
+        Button{
+            text: "services"
+            onClicked: console.info("services: " + lecentral.services().join('\n'))
+        }
     }
 
     LowEnergyCentral{
         id: lecentral
-        //remoteAddr:
-        //localAddr:
-
+        remoteAddr: "24:4B:81:16:98:7D"
+        localAddr: "00:1A:7D:DA:71:03"
+        onConnected: console.info("Connected!")
+        onDiscoveryFinished: console.info("Discovery finished!")
     }
 }

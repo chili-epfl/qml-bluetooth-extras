@@ -24,16 +24,12 @@
 #include "LowEnergyCentral.h"
 
 #include <QBluetoothAddress>
+#include <QBluetoothUuid>
 
 namespace QMLBluetoothExtras{
 
 LowEnergyCentral::LowEnergyCentral(QQuickItem* parent) : QQuickItem(parent){
     controller = NULL;
-
-    /* USING UNDOCUMENTED CONSTRUCTOR */
-    //controller = new QLowEnergyController(QBluetoothAddress("F0:52:FF:E5:EB:54"), QBluetoothAddress("F8:59:71:2F:58:EA"), this);
-    controller = new QLowEnergyController(QBluetoothAddress("F0:52:FF:E5:EB:54"), this);
-
 }
 
 LowEnergyCentral::~LowEnergyCentral(){
@@ -41,9 +37,37 @@ LowEnergyCentral::~LowEnergyCentral(){
         controller->deleteLater();
 }
 
+void LowEnergyCentral::discoverServices(){
+    controller->discoverServices();
+}
+
 void LowEnergyCentral::connectToDevice(){
+
+    /* USING UNDOCUMENTED CONSTRUCTOR */
+    controller = new QLowEnergyController(QBluetoothAddress(remoteAddr), QBluetoothAddress(localAddr), this);
+    //controller = new QLowEnergyController(QBluetoothAddress("FC:F1:52:79:57:3A"), this);
+
+    connect(controller, SIGNAL(connected()), this, SIGNAL(connected()));
+    connect(controller, SIGNAL(discoveryFinished()), this, SIGNAL(discoveryFinished()));
     controller->setRemoteAddressType(QLowEnergyController::PublicAddress);
     controller->connectToDevice();
 }
+
+QStringList LowEnergyCentral::services(){
+    QList<QBluetoothUuid> s = controller->services();
+    QStringList result;
+    for(auto const& service : s)
+        result.append(service.toString());
+    return result;
+}
+
+int LowEnergyCentral::state(){
+    return controller->state();
+}
+
+int LowEnergyCentral::error(){
+    return controller->error();
+}
+
 
 }
