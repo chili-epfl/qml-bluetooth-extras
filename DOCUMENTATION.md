@@ -14,6 +14,7 @@ QML wrappers for missing Qt Bluetooth objects.
 --------------------------------|---------------------------------------------
 `class `[`QMLBluetoothExtras::BluetoothLocalDevice`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice) | QML wrapper around QBluetoothLocalDevice.
 `class `[`QMLBluetoothExtras::BluetoothLocalDeviceStatic`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic) | Object for exposing QBluetoothLocalDevice enums and static methods to QML.
+`class `[`QMLBluetoothExtras::BluetoothScanner`](#classQMLBluetoothExtras_1_1BluetoothScanner) | Object that scans for Bluetooth devices.
 `class `[`QMLBluetoothExtras::BluetoothServer`](#classQMLBluetoothExtras_1_1BluetoothServer) | QML wrapper for QBluetoothServer.
 `class `[`QMLBluetoothExtras::BluetoothSocketExtended`](#classQMLBluetoothExtras_1_1BluetoothSocketExtended) | QML wrapper for QBluetoothSocket.
 
@@ -30,7 +31,7 @@ QML wrapper around QBluetoothLocalDevice.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`{property} `[`BluetoothLocalDeviceStatic::HostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic_1a45fc999b746711ef44eae85901c551db)` `[`hostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1a3eefb931868ba1385e51f54d65083d97) | Current read-only host mode as described in [http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum](http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum).
+`{property} `[`QMLBluetoothExtras::BluetoothLocalDeviceStatic::HostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic_1a45fc999b746711ef44eae85901c551db)` `[`hostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1ae96d441025430705ae923f873397db70) | Current read-only host mode as described in [http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum](http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum).
 `{property} QString `[`name`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1a19fc16a2a82917678bf1bbb904d760a8) | Read-only local adapter name.
 `{property} QString `[`address`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1a195dffc10b4fd2e84f7b8108e1ba82dc) | Desired local adapter address.
 `{property} QStringList `[`connectedDevices`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1a1ac902e032c44402be823c69480d59af) | Read-only list of currently connected remote devices over this adapter.
@@ -39,7 +40,7 @@ QML wrapper around QBluetoothLocalDevice.
 
 ## Members
 
-#### `{property} `[`BluetoothLocalDeviceStatic::HostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic_1a45fc999b746711ef44eae85901c551db)` `[`hostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1a3eefb931868ba1385e51f54d65083d97) 
+#### `{property} `[`QMLBluetoothExtras::BluetoothLocalDeviceStatic::HostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDeviceStatic_1a45fc999b746711ef44eae85901c551db)` `[`hostMode`](#classQMLBluetoothExtras_1_1BluetoothLocalDevice_1ae96d441025430705ae923f873397db70) 
 
 Current read-only host mode as described in [http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum](http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum).
 
@@ -104,6 +105,85 @@ HostModeDiscoverableLimitedInquiry            | ?
 
 Host modes as described in [http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum](http://doc.qt.io/qt-5/qbluetoothlocaldevice.html#HostMode-enum).
 
+# class `QMLBluetoothExtras::BluetoothScanner` 
+
+```
+class QMLBluetoothExtras::BluetoothScanner
+  : public QQuickItem
+```  
+
+Object that scans for Bluetooth devices.
+
+## Summary
+
+ Members                        | Descriptions                                
+--------------------------------|---------------------------------------------
+`{property} bool `[`continuous`](#classQMLBluetoothExtras_1_1BluetoothScanner_1af4431336acc6a5c1b86e13d5ae8f91fa) | Whether to scan continuously, default false.
+`{property} bool `[`scanForClassic`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a94fe7229e5883dbca85f0d7050b6384d) | Whether to scan for Bluetooth Classic devices (v2.1 and earlier, if supported), default true.
+`{property} bool `[`scanForLE`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a1cc1cd51229bc649dcce9111c798489a) | Whether to scan for Bluetooth Low Energy devices (v4.0 and later, if supported), default true.
+`{property} bool `[`scanning`](#classQMLBluetoothExtras_1_1BluetoothScanner_1af50cafed435e16787d6aae3cbf5312ae) | Whether scanning now, read-only.
+`{property} QStringList `[`discoveredDevices`](#classQMLBluetoothExtras_1_1BluetoothScanner_1abe58446c95c7a5f87eedd0407613cb78) | List of discovered device MAC addresses, read-only.
+`{signal} public void `[`deviceDiscovered`](#classQMLBluetoothExtras_1_1BluetoothScanner_1ae2151722b182b8218d1f7f602de7d188)`(QString const & macAddr,QString const & name)` | Emitted when a new device is discovered.
+`{signal} public void `[`finished`](#classQMLBluetoothExtras_1_1BluetoothScanner_1ae7f75e3ae9c29946d5202aa3a7370bdf)`()` | Emitted when scanning finishes.
+`{slot} public void `[`start`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a0dcc066b0608c8365300ee0c23e88d73)`()` | Starts scanning.
+`{slot} public void `[`stop`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a187335be5166147f691034ac3d0c73f5)`()` | Stops scanning.
+`{slot} public void `[`clear`](#classQMLBluetoothExtras_1_1BluetoothScanner_1acbaebf91fd08073fdf6d803b06dc0787)`()` | Clears the list of found robots.
+
+## Members
+
+#### `{property} bool `[`continuous`](#classQMLBluetoothExtras_1_1BluetoothScanner_1af4431336acc6a5c1b86e13d5ae8f91fa) 
+
+Whether to scan continuously, default false.
+
+Whether to continuously scan.
+
+#### `{property} bool `[`scanForClassic`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a94fe7229e5883dbca85f0d7050b6384d) 
+
+Whether to scan for Bluetooth Classic devices (v2.1 and earlier, if supported), default true.
+
+Whether to scan for Bluetooth Classic devices.
+
+#### `{property} bool `[`scanForLE`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a1cc1cd51229bc649dcce9111c798489a) 
+
+Whether to scan for Bluetooth Low Energy devices (v4.0 and later, if supported), default true.
+
+Whether to scan for Bluetooth Low Energy devices.
+
+#### `{property} bool `[`scanning`](#classQMLBluetoothExtras_1_1BluetoothScanner_1af50cafed435e16787d6aae3cbf5312ae) 
+
+Whether scanning now, read-only.
+
+#### `{property} QStringList `[`discoveredDevices`](#classQMLBluetoothExtras_1_1BluetoothScanner_1abe58446c95c7a5f87eedd0407613cb78) 
+
+List of discovered device MAC addresses, read-only.
+
+List of device MAC addresses that are discovered.
+
+#### `{signal} public void `[`deviceDiscovered`](#classQMLBluetoothExtras_1_1BluetoothScanner_1ae2151722b182b8218d1f7f602de7d188)`(QString const & macAddr,QString const & name)` 
+
+Emitted when a new device is discovered.
+
+#### Parameters
+* `macAddr` Mac address of the newly discovered device 
+
+* `name` Name of the discovered device if available
+
+#### `{signal} public void `[`finished`](#classQMLBluetoothExtras_1_1BluetoothScanner_1ae7f75e3ae9c29946d5202aa3a7370bdf)`()` 
+
+Emitted when scanning finishes.
+
+#### `{slot} public void `[`start`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a0dcc066b0608c8365300ee0c23e88d73)`()` 
+
+Starts scanning.
+
+#### `{slot} public void `[`stop`](#classQMLBluetoothExtras_1_1BluetoothScanner_1a187335be5166147f691034ac3d0c73f5)`()` 
+
+Stops scanning.
+
+#### `{slot} public void `[`clear`](#classQMLBluetoothExtras_1_1BluetoothScanner_1acbaebf91fd08073fdf6d803b06dc0787)`()` 
+
+Clears the list of found robots.
+
 # class `QMLBluetoothExtras::BluetoothServer` 
 
 ```
@@ -120,7 +200,7 @@ QML wrapper for QBluetoothServer.
 `{property} bool `[`listen`](#classQMLBluetoothExtras_1_1BluetoothServer_1a2c245ffd03d8defc241d1c9364d3f5f3) | Whether to listen for incoming connections.
 `{property} QString `[`uuid`](#classQMLBluetoothExtras_1_1BluetoothServer_1ad4af8eda2c446ab025c22dfb20c08726) | The advertised service UUID, e.g {00001101-0000-1000-8000-00805F9B34FB}.
 `{property} QString `[`name`](#classQMLBluetoothExtras_1_1BluetoothServer_1a4d5e6bb32048012af60e229c7c5e02e8) | The advertised service name, e.g {00001101-0000-1000-8000-00805F9B34FB}.
-`{signal} public void `[`newConnection`](#classQMLBluetoothExtras_1_1BluetoothServer_1a1689196941f84f1a15d8c72ad1b500ad)`(`[`BluetoothSocketExtended`](#classQMLBluetoothExtras_1_1BluetoothSocketExtended)` * socket)` | Emitted when a new socket is connected.
+`{signal} public void `[`newConnection`](#classQMLBluetoothExtras_1_1BluetoothServer_1ad45561fa2dd3db0915356d258a1db82d)`(`[`QMLBluetoothExtras::BluetoothSocketExtended`](#classQMLBluetoothExtras_1_1BluetoothSocketExtended)` * socket)` | Emitted when a new socket is connected.
 
 ## Members
 
@@ -140,7 +220,7 @@ The advertised service name, e.g {00001101-0000-1000-8000-00805F9B34FB}.
 
 Service name.
 
-#### `{signal} public void `[`newConnection`](#classQMLBluetoothExtras_1_1BluetoothServer_1a1689196941f84f1a15d8c72ad1b500ad)`(`[`BluetoothSocketExtended`](#classQMLBluetoothExtras_1_1BluetoothSocketExtended)` * socket)` 
+#### `{signal} public void `[`newConnection`](#classQMLBluetoothExtras_1_1BluetoothServer_1ad45561fa2dd3db0915356d258a1db82d)`(`[`QMLBluetoothExtras::BluetoothSocketExtended`](#classQMLBluetoothExtras_1_1BluetoothSocketExtended)` * socket)` 
 
 Emitted when a new socket is connected.
 
