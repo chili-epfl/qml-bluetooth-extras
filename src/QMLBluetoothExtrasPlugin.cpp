@@ -29,6 +29,7 @@
 #include "BluetoothScanner.h"
 #include "classic/BluetoothServer.h"
 #include "classic/BluetoothSocketExtended.h"
+#include "le/LowEnergyCentral.h"
 
 /**
  * @brief QML wrappers for missing Qt Bluetooth objects
@@ -46,6 +47,7 @@ void QMLBluetoothExtrasPlugin::registerTypes(const char* uri){
     qmlRegisterType<BluetoothServer>(uri, 1, 0, "BluetoothServer");
     qmlRegisterType<BluetoothSocketExtended>(uri, 1, 0, "BluetoothSocketExtented");
     qmlRegisterType<BluetoothScanner>(uri, 1, 0, "BluetoothScanner");
+    qmlRegisterType<LowEnergyCentral>(uri, 1, 0, "LowEnergyCentral");
 }
 
 }

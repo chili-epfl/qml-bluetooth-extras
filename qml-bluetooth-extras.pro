@@ -21,7 +21,8 @@ HEADERS += \
     src/classic/BluetoothSocketExtended.h \
     src/BluetoothLocalDeviceStatic.h \
     src/BluetoothLocalDevice.h \
-    src/BluetoothScanner.h
+    src/BluetoothScanner.h \
+    src/le/LowEnergyCentral.h
 
 SOURCES += \
     src/QMLBluetoothExtrasPlugin.cpp \
@@ -29,7 +30,8 @@ SOURCES += \
     src/classic/BluetoothSocketExtended.cpp \
     src/BluetoothLocalDeviceStatic.cpp \
     src/BluetoothLocalDevice.cpp \
-    src/BluetoothScanner.cpp
+    src/BluetoothScanner.cpp \
+    src/le/LowEnergyCentral.cpp
 
 OTHER_FILES += qmldir
 
