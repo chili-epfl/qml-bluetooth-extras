@@ -26,6 +26,7 @@
 
 #include "BluetoothLocalDevice.h"
 #include "BluetoothLocalDeviceStatic.h"
+#include "BluetoothScanner.h"
 #include "classic/BluetoothServer.h"
 #include "classic/BluetoothSocketExtended.h"
 
@@ -44,6 +45,7 @@ void QMLBluetoothExtrasPlugin::registerTypes(const char* uri){
                                                 });
     qmlRegisterType<BluetoothServer>(uri, 1, 0, "BluetoothServer");
     qmlRegisterType<BluetoothSocketExtended>(uri, 1, 0, "BluetoothSocketExtented");
+    qmlRegisterType<BluetoothScanner>(uri, 1, 0, "BluetoothScanner");
 }
 
 }
