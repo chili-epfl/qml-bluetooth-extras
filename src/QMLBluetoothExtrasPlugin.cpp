@@ -26,8 +26,8 @@
 
 #include "BluetoothLocalDevice.h"
 #include "BluetoothLocalDeviceStatic.h"
-#include "BluetoothServer.h"
-#include "BluetoothSocketExtended.h"
+#include "classic/BluetoothServer.h"
+#include "classic/BluetoothSocketExtended.h"
 
 /**
  * @brief QML wrappers for missing Qt Bluetooth objects
