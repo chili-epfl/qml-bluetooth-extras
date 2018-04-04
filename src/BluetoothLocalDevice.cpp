@@ -27,7 +27,7 @@
 namespace QMLBluetoothExtras{
 
 BluetoothLocalDevice::BluetoothLocalDevice(QQuickItem* parent) : QQuickItem(parent){
-    #if defined(Q_OS_WINDOWS)
+    #if defined(Q_OS_WIN)
         qCritical() << "BluetoothLocalDevice::BluetoothLocalDevice(): Does not yet work on WinRT";
     #endif
     localDevice = new QBluetoothLocalDevice(this);
