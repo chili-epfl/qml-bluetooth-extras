@@ -81,7 +81,7 @@ void BluetoothScanner::sortNewDevice(QBluetoothDeviceInfo const& info){
         if(
             ((info.coreConfigurations() & QBluetoothDeviceInfo::LowEnergyCoreConfiguration) && scanForLE) ||
             ((info.coreConfigurations() & QBluetoothDeviceInfo::BaseRateCoreConfiguration) && scanForClassic) ||
-            ((info.coreConfigurations() & QBluetoothDeviceInfo::BaseRateAndLowEnergyCoreConfiguration) && (scanForLE || scanForClassic))
+            (scanForLE && scanForClassic)
         ){
             discoveredDevices.append(macAddr);
             emit discoveredDevicesChanged();
