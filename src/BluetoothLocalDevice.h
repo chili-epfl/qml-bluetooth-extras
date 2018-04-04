@@ -34,6 +34,8 @@ namespace QMLBluetoothExtras {
 
 /**
  * @brief QML wrapper around QBluetoothLocalDevice
+ *
+ * Does not work on WinRT as of now.
  */
 class BluetoothLocalDevice : public QQuickItem {
     /* *INDENT-OFF* */

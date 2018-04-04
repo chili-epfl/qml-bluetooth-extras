@@ -33,6 +33,9 @@ BluetoothLocalDeviceStatic::BluetoothLocalDeviceStatic(QObject* parent) : QObjec
 BluetoothLocalDeviceStatic::~BluetoothLocalDeviceStatic(){}
 
 QStringList BluetoothLocalDeviceStatic::allDevices(){
+    #if defined(Q_OS_WINDOWS)
+        qCritical() << "BluetoothLocalDeviceStatic::allDevices(): Does not yet work on WinRT";
+    #endif
     QStringList devices;
     for(QBluetoothHostInfo const& hostInfo : QBluetoothLocalDevice::allDevices())
         devices << hostInfo.address().toString();

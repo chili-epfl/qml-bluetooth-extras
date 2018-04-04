@@ -31,4 +31,9 @@ ApplicationWindow {
             }
         }
     }
+
+    Text{
+        text: "Functionality in this sample does not yet work on WinRT."
+        visible: Qt.platform.os === "winrt"
+    }
 }

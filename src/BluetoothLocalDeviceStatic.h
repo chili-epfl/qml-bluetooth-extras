@@ -32,6 +32,9 @@ namespace QMLBluetoothExtras {
 
 /**
  * @brief Object for exposing QBluetoothLocalDevice enums and static methods to QML
+ *
+ * Does not work on WinRT as of now.
+ *
  * @singleton
  */
 class BluetoothLocalDeviceStatic : public QObject {
