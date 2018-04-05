@@ -27,6 +27,8 @@ class QMLBluetoothExtras::BluetoothLocalDevice
 
 QML wrapper around QBluetoothLocalDevice.
 
+Does not work on WinRT as of now.
+
 ## Summary
 
  Members                        | Descriptions                                
@@ -75,6 +77,8 @@ class QMLBluetoothExtras::BluetoothLocalDeviceStatic
 ```  
 
 Object for exposing QBluetoothLocalDevice enums and static methods to QML.
+
+Does not work on WinRT as of now.
 
 This class is **singleton**, you can call `ThisClass.anyFunction()` and use `ThisClass.anyProperty` directly.
 
