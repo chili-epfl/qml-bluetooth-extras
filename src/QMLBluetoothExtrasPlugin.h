@@ -16,6 +16,12 @@
  */
 
 /**
+ * @mainpage qml-bluetooth-extras
+ *
+ * QML wrappers for missing Qt Bluetooth objects. More Qt Bluetooth wrappers might come soon. See README.md for more information.
+ */
+
+/**
  * @file QMLBluetoothExtrasPlugin.h
  * @brief Object that exposes the QMLBluetoothExtras plugin components as QML objects
  * @author Ayberk Özgür

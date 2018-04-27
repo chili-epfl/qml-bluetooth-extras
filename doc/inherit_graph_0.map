@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classQMLBluetoothExtras_1_1BluetoothLocalDevice.html" title="QML wrapper around QBluetoothLocalDevice. " alt="" coords="5,71,163,112"/>
+<area shape="rect" id="node2" href="$classQMLBluetoothExtras_1_1BluetoothScanner.html" title="Object that scans for Bluetooth devices. " alt="" coords="230,5,373,47"/>
+<area shape="rect" id="node3" href="$classQMLBluetoothExtras_1_1BluetoothServer.html" title="QML wrapper for QBluetoothServer. " alt="" coords="230,71,373,112"/>
+<area shape="rect" id="node4" href="$classQMLBluetoothExtras_1_1BluetoothSocketExtended.html" title="QML wrapper for QBluetoothSocket. " alt="" coords="211,136,392,177"/>
+</map>
