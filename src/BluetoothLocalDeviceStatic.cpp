@@ -25,6 +25,7 @@
 #include "BluetoothLocalDeviceStatic.h"
 
 #include <QBluetoothHostInfo>
+#include <QDebug>
 
 namespace QMLBluetoothExtras{
 
